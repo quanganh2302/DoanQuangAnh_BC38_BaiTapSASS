@@ -1,0 +1,28 @@
+@import "../Componentes/button";
+
+
+.header{
+    .container{
+        .row{
+            .logo{
+                img{
+                    width: 80px;
+                }
+            }
+            .header-right{
+                nav{
+                    ul{
+                        margin: 0;
+                        list-style: none;
+                        li{
+                            display: inline-block;
+                            a{
+                                @include text($color-text-main,13px,600,$ff-title);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

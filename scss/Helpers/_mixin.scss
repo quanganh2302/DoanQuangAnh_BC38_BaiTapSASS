@@ -1,0 +1,48 @@
+@import "./variables";
+
+//-->Text
+@mixin text($co: $color-main, $fs: 15px, $fw: 300, $ff: $ff-content) {
+  color: $co;
+  font-size: $fs;
+  font-weight: $fw;
+  font-family: $ff;
+}
+
+@mixin text-btn($co: $color-main, $fs: $fs-df, $fw: 400,$ff:$ff-title) {
+  color: $co;
+  font-size: $fs;
+  font-weight: $fw;
+}
+//Text<--
+//-->Footer
+@mixin menu-footer() {
+  h3 {
+    @include text($color-text-footer, 1.5rem, 700, $ff-title);
+    margin-bottom: 30px;
+  }
+  ul {
+    li {
+      margin-bottom: 11px;
+      a {
+        @include text($color-text-footer, .9rem, 400, $ff-content);
+        padding-bottom: 12px;
+        margin-bottom: 1px;
+        text-transform: capitalize;
+        transition: all 0.5s;
+        &:hover {
+          opacity: .8;
+        }
+      }
+    }
+  }
+}
+
+//Footer<--
+
+@mixin btn($pd: 0, $ra, $bg, $co, $fs, $fw,$ff) {
+  @include text-btn($co, .9rem, 400,$ff);
+  padding: $pd;
+  border-radius: $ra;
+  background: $bg;
+  transition: all 0.5s;
+} ;

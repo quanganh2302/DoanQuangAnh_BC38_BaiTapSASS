@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+}
+
+
+.container{
+    max-width: 1260px;
+    width: 100%;
+    padding: 0 30px;
+    margin: 0 auto;
+    @media only screen and (max-width: 1259px) {
+        width: 100%;
+        max-width: none;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+a{
+    text-decoration: none;
+}
