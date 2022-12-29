@@ -3,7 +3,17 @@
 // -->Header
 .header {
   position: relative;
-  z-index: 2;
+  z-index: 200;
+  &.inverted {
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgb(204 204 204 / 50%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; 
+    animation-name: moveIntop;
+    animation-duration: .5s;
+  }
   .container {
     .row {
       font-size: 0.9rem;
@@ -42,9 +52,12 @@
               border: 1px solid transparent;
               transition: all 0.3s ease;
               padding: 1.1em 1.5em;
+              overflow: hidden;
+              box-shadow: 0 0 0 3em #b61984 inset;
               &:hover {
                 border: 1px solid $color-client;
                 background-color: #fff;
+                box-shadow: 0 0 0 1px #b61984 inset;
                 i,
                 span {
                   color: $color-client;
@@ -91,10 +104,13 @@
   .container {
     .row {
       .carousel-left {
+        position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
         .carousel-content {
+          animation-name: moveInleft;
+          animation-duration: 1s;
           h1 {
             @include text($color-client, 1.1rem, 600, $ff-title);
             text-transform: uppercase;
@@ -130,8 +146,19 @@
     z-index: 2;
     .row {
       .tag {
+        @for $i from 1 to 5 {
+          .card-#{$i} {
+            transition: all 0;
+            animation-duration: #{$i * 1s};
+            animation-name: apperCard;
+          }
+        }
         padding: 0 20px;
         .member-card {
+          // // transition-delay: #{$i*200ms};
+          // animation-name: apperCard;
+          // animation-duration: 5s;
+
           background-color: rgba(255, 255, 255, 1);
           transition: all 0.2s ease-in-out;
           border-radius: 10px;
@@ -196,6 +223,9 @@
     z-index: 2;
     .row {
       .contact-left {
+        transition: all 1s ease;
+        animation-name: moveInLeftImg;
+        animation-duration: 5s;
         img {
           width: auto;
         }
@@ -373,6 +403,7 @@
     }
   }
 }
+
 // Contact<--
 // Footer
 .footer {
@@ -382,6 +413,13 @@
   background-position: center;
   .container {
     .row {
+      @for $i from 1 to 5 {
+        .footer-card-#{$i} {
+          transition: all 0;
+          animation-duration: #{$i * 1s};
+          animation-name: apperCard;
+        }
+      }
       .footer-col {
         margin-bottom: 80px;
         @include menu-footer();
@@ -418,55 +456,54 @@
       }
       .footer-col:last-of-type {
         .footer-btn {
-            .btn-email {  
-                padding-bottom: .5em;
-                input{
-                    text-align: center;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    outline: none;
-                    font: inherit;
-                    width: 100%;
-                    background: transparent;
-                    line-height: 1;
-                    display: block;
-                    padding: 1em;
-                    color: inherit;
-                    border-radius: 50px;
-                    transition: all 500ms ease;
-                    &::placeholder {
-                      color: $color-text-footer;
-                    }
-                    &:hover {
-                      border: 1px solid rgba(255, 255, 255, 1);
-                    }
-                }
-          }
-          .btn-sub{
-              input {
-                cursor: pointer;
-                text-align: center;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                outline: none;
-                font: inherit;
-                width: 100%;
-                background: transparent;
-                line-height: 1;
-                display: block;
-                padding: 1em;
-                color: inherit;
-                border-radius: 50px;
-                transition: all 500ms ease;
-                box-shadow: 0 0 0 3em #fff inset;
-                &::placeholder {
-                  color: $color-text-main;
-                }
-                &:hover {
-                  &::placeholder {
-                    color: #fff;
-                  }
-                  box-shadow: 0 0 0 1px #fff inset;
-                }
+          .btn-email {
+            padding-bottom: 0.5em;
+            input {
+              text-align: center;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              outline: none;
+              font: inherit;
+              width: 100%;
+              background: transparent;
+              line-height: 1;
+              display: block;
+              padding: 1em;
+              color: inherit;
+              border-radius: 50px;
+              transition: all 500ms ease;
+              &::placeholder {
+                color: $color-text-footer;
               }
+              &:hover {
+                border: 1px solid rgba(255, 255, 255, 1);
+              }
+            }
+          }
+          .btn-sub {
+            input {
+              cursor: pointer;
+              text-align: center;
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              outline: none;
+              width: 100%;
+              background: transparent;
+              line-height: 1;
+              display: block;
+              padding: 1em;
+              color: inherit;
+              border-radius: 50px;
+              transition: all 500ms ease;
+              box-shadow: 0 0 0 3em #fff inset;
+              &::placeholder {
+                color: $color-text-main;
+              }
+              &:hover {
+                &::placeholder {
+                  color: #fff;
+                }
+                box-shadow: 0 0 0 1px #fff inset;
+              }
+            }
           }
         }
       }
@@ -474,3 +511,58 @@
   }
 }
 // Footer
+// .header.inverted{
+//   background: #fff;
+//   box-shadow: 0 0 10px 0 rgb(204 204 204 / 50%);
+//   height: 150px;
+// }
+
+@keyframes apperCard {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInleft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInleftImg {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  80% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+
+@keyframes moveIntop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
